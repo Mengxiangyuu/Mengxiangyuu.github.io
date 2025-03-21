@@ -64,6 +64,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Dom-Scripting-8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/04/Dom-Scripting-8/" class="article-date">
+  <time datetime="2021-08-04T14:38:52.000Z" itemprop="datePublished">2021-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/04/Dom-Scripting-8/">Dom-Scripting(8)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a><strong>CSS-DOM</strong></h1><p>用CSS声明样式主要有四种情况。第一种为元素标签，第二种为class属性，第三种为id属性，第四种为元素的位置。</p>
+<p>如果文档需要定期刷新，添加class或id属性使效率降低，因此用DOM方式改变样式。</p>
+<h2 id="为跟在h1后面的元素添加样式"><a href="#为跟在h1后面的元素添加样式" class="headerlink" title="为跟在h1后面的元素添加样式"></a>为跟在h1后面的元素添加样式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查找下一个元素节点（注意不是下一个节点）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNextElement</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node.nodetype == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//文档中下一个节点，可以用nextSibling属性查找</span></span><br><span class="line">    <span class="keyword">if</span> (node.nextSibling)&#123;</span><br><span class="line">        <span class="keyword">return</span> getNextElement(node.nextSibling)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">styleHeaderSiblings</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">document</span>.getElementsByTagName) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">var</span> headers = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;h1&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> elem;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;headers.length; i++)&#123;</span><br><span class="line">        elem = getNextElement(headers[i].nextSibling);</span><br><span class="line">        elem.style.fontWeight = <span class="string">&quot;bold&quot;</span>;</span><br><span class="line">        elem.style.fontSize = <span class="string">&quot;1.2em&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/04/Dom-Scripting-8/" data-id="cm8ga6hxa000bgktq73m03ljo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Dom-Scripting-7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/08/04/Dom-Scripting-7/" class="article-date">
@@ -93,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/04/Dom-Scripting-7/" data-id="cm8ga4vf3000ftctq15qv1s2d" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/04/Dom-Scripting-7/" data-id="cm8ga6hxb000egktqdvsabzkq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
@@ -154,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/30/Dom-Scripting-6/" data-id="cm8ga4vf3000dtctqem85eilh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/07/30/Dom-Scripting-6/" data-id="cm8ga6hx90009gktq4d6n1x01" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
@@ -205,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/29/Dom-Scripting-5/" data-id="cm8ga4vf2000ctctq6981eu1o" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/07/29/Dom-Scripting-5/" data-id="cm8ga6hx70006gktqhxz6cjw5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
@@ -276,7 +316,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/28/Dom-Scripting-4/" data-id="cm8ga4veu0005tctqfhxabaop" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/07/28/Dom-Scripting-4/" data-id="cm8ga6hx70005gktq9hssakd8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
@@ -330,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/28/Dom-Scripting-3/" data-id="cm8ga4vet0004tctqft8h5zk4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/07/28/Dom-Scripting-3/" data-id="cm8ga6hx60004gktqga5g1e4e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
@@ -384,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/28/Dom-Scripting-2/" data-id="cm8ga4ver0002tctq1olb2151" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/07/28/Dom-Scripting-2/" data-id="cm8ga6hx40002gktqg6v084r6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
@@ -448,7 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/27/Dom%20Scripting%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="cm8ga4veo0001tctq8kojbtr9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/07/27/Dom%20Scripting%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="cm8ga6hx10001gktq1j3gam0u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
@@ -510,6 +550,10 @@
       <ul>
         
           <li>
+            <a href="/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/">Review of Federated Learning for Medical Image Analysis(2)</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/19/Review-of-Federated-Learning-for-Medical-Image-Analysis/">Review of Federated Learning for Medical Image Analysis</a>
           </li>
         
@@ -523,10 +567,6 @@
         
           <li>
             <a href="/2021/12/15/css-6/">HTML基础-6</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/06/css-5/">HTML基础-5</a>
           </li>
         
       </ul>

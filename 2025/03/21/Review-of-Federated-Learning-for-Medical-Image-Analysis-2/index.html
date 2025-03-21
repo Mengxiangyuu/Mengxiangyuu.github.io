@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Review of Federated Learning for Medical Image Analysis(2) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="客户端：有限的数据和标签 (Client end: Limited data and labels)问题背景：有限数据和标签在医学图像分析的联邦学习（FL）中，许多站点（如医院、诊所等）常常面临数据量不足的挑战，特别是在医学图像中，标注数据的缺乏使得训练有效模型更加困难。由于医学影像标注的成本高昂，客户端可能只有有限的医学图像和标签，这会导致模型在训练时无法充分学习到有用的特征，进而影响全局模型的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Review of Federated Learning for Medical Image Analysis(2)">
+<meta property="og:url" content="http://example.com/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="客户端：有限的数据和标签 (Client end: Limited data and labels)问题背景：有限数据和标签在医学图像分析的联邦学习（FL）中，许多站点（如医院、诊所等）常常面临数据量不足的挑战，特别是在医学图像中，标注数据的缺乏使得训练有效模型更加困难。由于医学影像标注的成本高昂，客户端可能只有有限的医学图像和标签，这会导致模型在训练时无法充分学习到有用的特征，进而影响全局模型的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-21T07:51:13.000Z">
+<meta property="article:modified_time" content="2025-03-21T07:51:55.236Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Review-of-Federated-Learning-for-Medical-Image-Analysis-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/" class="article-date">
+  <time datetime="2025-03-21T07:51:13.000Z" itemprop="datePublished">2025-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Review of Federated Learning for Medical Image Analysis(2)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="客户端：有限的数据和标签-Client-end-Limited-data-and-labels"><a href="#客户端：有限的数据和标签-Client-end-Limited-data-and-labels" class="headerlink" title="客户端：有限的数据和标签 (Client end: Limited data and labels)"></a>客户端：有限的数据和标签 (Client end: Limited data and labels)</h1><h2 id="问题背景：有限数据和标签"><a href="#问题背景：有限数据和标签" class="headerlink" title="问题背景：有限数据和标签"></a>问题背景：有限数据和标签</h2><p>在医学图像分析的联邦学习（FL）中，许多站点（如医院、诊所等）常常面临数据量不足的挑战，特别是在医学图像中，标注数据的缺乏使得训练有效模型更加困难。由于医学影像标注的成本高昂，客户端可能只有有限的医学图像和标签，这会导致模型在训练时无法充分学习到有用的特征，进而影响全局模型的训练效果。因此，如何处理这些小样本数据的问题，成为联邦学习中的一个重要研究课题。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
+<li><strong>对比学习 (Contrast Learning)</strong></li>
+<li><strong>多任务学习 (Multi-Task Learning)</strong></li>
+<li><strong>弱监督学习 (Weakly-Supervised Learning)</strong></li>
+<li><strong>知识蒸馏 (Knowledge Distillation)</strong></li>
+<li><strong>数据合成 (Data Synthesis)</strong></li>
+</ol>
+<h1 id="联邦学习中的异构环境问题"><a href="#联邦学习中的异构环境问题" class="headerlink" title="联邦学习中的异构环境问题"></a>联邦学习中的异构环境问题</h1><h2 id="问题背景：计算资源与数据差异"><a href="#问题背景：计算资源与数据差异" class="headerlink" title="问题背景：计算资源与数据差异"></a>问题背景：计算资源与数据差异</h2><p>本研究关注的是在不同的医疗影像站点/中心之间，数据量和计算资源（如GPU的可用性）上的差异。尤其是当计算资源差异较大时，强者更强，弱者更弱，导致整个训练过程的收敛速度变慢。</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>一个拥有先进GPU的站点进行50个周期的更新可能只需要1秒钟，而计算资源较弱的站点可能需要100秒。这样，强者客户端需要等待较长时间，直到其他较弱客户端完成训练并进行模型共享，从而降低了联邦训练的整体效率。</p>
+<h3 id="解决方案：半同步训练"><a href="#解决方案：半同步训练" class="headerlink" title="解决方案：半同步训练"></a>解决方案：半同步训练</h3><p>Stripelis等人提出了一种半同步训练策略，专门用于医学影像分析任务。该策略允许不同客户端根据其计算资源和数据量的不同，进行不同的训练周期数。</p>
+<h1 id="服务器端学习中的权重聚合"><a href="#服务器端学习中的权重聚合" class="headerlink" title="服务器端学习中的权重聚合"></a>服务器端学习中的权重聚合</h1><h2 id="问题背景：权重聚合"><a href="#问题背景：权重聚合" class="headerlink" title="问题背景：权重聚合"></a>问题背景：权重聚合</h2><p>在联邦学习系统中，需要有效的策略来聚合客户端的权重，确保每次客户端与服务器通信后，系统性能能够保持一致，避免性能退化。</p>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><h4 id="Progressive-Fourier-聚合策略"><a href="#Progressive-Fourier-聚合策略" class="headerlink" title="Progressive Fourier 聚合策略"></a><strong>Progressive Fourier 聚合策略</strong></h4><p>Chen等人提出了一种在服务器端的Progressive Fourier 聚合策略（基于傅里叶变换）。该策略通过聚合客户端的低频参数部分来共享不同客户端之间学习到的知识，而忽略高频部分。这种方法基于先前的研究，认为深度网络的能力主要由低频部分决定。</p>
+<h4 id="训练损失的影响"><a href="#训练损失的影响" class="headerlink" title="训练损失的影响"></a><strong>训练损失的影响</strong></h4><p>Li等人考虑了每个客户端的训练损失，作为权重聚合的影响因素。例如，在COVID-19检测中，数据不均衡的客户端可能会表现较差。对于这些表现较差的客户端，其权重会被调整为较小值，从而影响全局权重的聚合。</p>
+<h1 id="服务器端学习中的客户端领域漂移问题"><a href="#服务器端学习中的客户端领域漂移问题" class="headerlink" title="服务器端学习中的客户端领域漂移问题"></a>服务器端学习中的客户端领域漂移问题</h1><h2 id="问题背景：领域漂移"><a href="#问题背景：领域漂移" class="headerlink" title="问题背景：领域漂移"></a>问题背景：领域漂移</h2><p>客户端之间的领域漂移，即不同医疗中心（客户端）之间的图像异质性，可能会导致全局模型偏差。具体来说，一个全局模型可能在某些客户端表现良好，但在其他客户端表现较差。</p>
+<h3 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h3><h4 id="Hosseini等人的方法"><a href="#Hosseini等人的方法" class="headerlink" title="Hosseini等人的方法"></a><strong>Hosseini等人的方法</strong></h4><p>Hosseini等人提出了修正的优化目标（受到无线网络中公平资源分配方法的启发），以促进统一的模型表现。当全局模型在某些客户端上表现较差时，会将其贡献添加到总损失函数中。</p>
+<h4 id="Fan等人的方法"><a href="#Fan等人的方法" class="headerlink" title="Fan等人的方法"></a><strong>Fan等人的方法</strong></h4><p>Fan等人利用引导梯度来优化全局模型。他们在聚合各客户端的本地权重时，只使用聚合后权重的正值来更新全局模型。</p>
+<h4 id="Luo等人的方法"><a href="#Luo等人的方法" class="headerlink" title="Luo等人的方法"></a><strong>Luo等人的方法</strong></h4><p>Luo等人提出了一种名为<strong>共享标签分布的联邦学习（FedSLD）</strong>方法，特别适用于医学图像分类任务。该方法通过缓解客户端之间标签分布的差异，来解决领域漂移问题。</p>
+<h1 id="服务器端学习中的客户端异常检测"><a href="#服务器端学习中的客户端异常检测" class="headerlink" title="服务器端学习中的客户端异常检测"></a>服务器端学习中的客户端异常检测</h1><h2 id="问题概述：客户端异常检测"><a href="#问题概述：客户端异常检测" class="headerlink" title="问题概述：客户端异常检测"></a>问题概述：客户端异常检测</h2><p>本研究探索如何保护联邦学习系统免受来自客户端的影响，尤其是由图像标签噪声或恶意攻击造成的腐败。</p>
+<h3 id="解决方案：异常检测"><a href="#解决方案：异常检测" class="headerlink" title="解决方案：异常检测"></a>解决方案：异常检测</h3><p>Alkhunaizi等人提出了一种针对医学图像的服务器端异常检测方法，称为基于距离的异常值抑制（DOS）。该方法能够有效防止客户端故障。每个客户端的权重是根据客户端的异常得分计算的，异常得分是通过Copula-based outlier detection方法进行计算的。</p>
+<h1 id="客户端-服务器通信中的数据泄露与攻击"><a href="#客户端-服务器通信中的数据泄露与攻击" class="headerlink" title="客户端-服务器通信中的数据泄露与攻击"></a>客户端-服务器通信中的数据泄露与攻击</h1><h2 id="问题背景：数据泄露与隐私侵犯"><a href="#问题背景：数据泄露与隐私侵犯" class="headerlink" title="问题背景：数据泄露与隐私侵犯"></a>问题背景：数据泄露与隐私侵犯</h2><p>开发有效的方法，防止在联邦学习的客户端与服务器交互过程中，医疗图像数据泄露和隐私侵犯。</p>
+<h3 id="解决方案：-2"><a href="#解决方案：-2" class="headerlink" title="解决方案："></a>解决方案：</h3><h4 id="部分权重共享"><a href="#部分权重共享" class="headerlink" title="部分权重共享"></a><strong>部分权重共享</strong></h4><p>Yang等人提出，分享整个模型（网络）可能无法完全保护隐私，因此他们建议在医学数据集上使用部分模型共享进行联邦学习。</p>
+<h1 id="通信效率优化"><a href="#通信效率优化" class="headerlink" title="通信效率优化"></a>通信效率优化</h1><h2 id="问题背景：通信效率"><a href="#问题背景：通信效率" class="headerlink" title="问题背景：通信效率"></a>问题背景：通信效率</h2><p>制定优化客户端与服务器之间通信的策略，旨在加速联邦学习（FL）中的收敛过程，并确保更有效的模型训练。</p>
+<h3 id="解决方案：动态融合方法"><a href="#解决方案：动态融合方法" class="headerlink" title="解决方案：动态融合方法"></a>解决方案：动态融合方法</h3><p>Zhang等人提出了一种基于动态融合的FL方法，专门用于COVID-19诊断。该框架根据客户端模型的性能动态选择参与的客户端进行权重融合。</p>
+<h1 id="软件平台和工具"><a href="#软件平台和工具" class="headerlink" title="软件平台和工具"></a>软件平台和工具</h1><p>略</p>
+<h2 id="数据集处理"><a href="#数据集处理" class="headerlink" title="数据集处理"></a>数据集处理</h2><p>常见数据集使用方式：</p>
+<ul>
+<li>直接使用不同医疗站点的数据</li>
+<li>将大型数据集拆分成多个子集</li>
+</ul>
+<h1 id="未来研究方向"><a href="#未来研究方向" class="headerlink" title="未来研究方向"></a>未来研究方向</h1><h2 id="重点关注："><a href="#重点关注：" class="headerlink" title="重点关注："></a>重点关注：</h2><ol>
+<li><strong>处理客户端数据漂移（Client Shift）</strong>：开发更高效的联邦学习领域适应方法和个性化联邦学习技术。</li>
+<li><strong>多模态融合用于联邦学习</strong>：如何在联邦学习中利用多模态医学图像数据。</li>
+<li><strong>处理未知客户端的模型泛化</strong>：确保模型对未知客户端或类别的泛化能力。</li>
+<li><strong>弱监督学习</strong>：处理不完整、不准确或不精确的标签数据。</li>
+<li><strong>联邦学习安全性：攻击与防御</strong>：加强联邦学习系统的防御策略。</li>
+<li><strong>区块链与去中心化的联邦学习</strong>：减少对中心服务器的依赖，增强系统可信度。</li>
+<li><strong>医学视频分析中的联邦学习</strong>：将联邦学习应用于医学视频分析。</li>
+<li><strong>大规模医学图像基准数据集</strong>：构建跨站点的大规模医学图像数据集。</li>
+<li><strong>模型可解释性</strong>：提高联邦学习系统模型的可解释性。</li>
+<li><strong>联邦学习的实际应用</strong>：解决联邦学习在现实世界中的兼容性和集成问题。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/" data-id="cm8ihgoww0000e4tq8s41729w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/03/19/Review-of-Federated-Learning-for-Medical-Image-Analysis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Review of Federated Learning for Medical Image Analysis</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTMLCSS/" rel="tag">HTMLCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Research/" rel="tag">Research</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Data-analysis/" style="font-size: 13.33px;">Data analysis</a> <a href="/tags/HTMLCSS/" style="font-size: 16.67px;">HTMLCSS</a> <a href="/tags/Research/" style="font-size: 10px;">Research</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/">Review of Federated Learning for Medical Image Analysis(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/Review-of-Federated-Learning-for-Medical-Image-Analysis/">Review of Federated Learning for Medical Image Analysis</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/13/SPSS-and-questionnaire-analysis/">SPSS and questionnaire analysis</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/12/Statistical-Analysis-and-SPSS-Application/">Statistical Analysis and SPSS Application</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/15/css-6/">HTML基础-6</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

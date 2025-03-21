@@ -64,6 +64,84 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Review-of-Federated-Learning-for-Medical-Image-Analysis-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/" class="article-date">
+  <time datetime="2025-03-21T07:51:13.000Z" itemprop="datePublished">2025-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/">Review of Federated Learning for Medical Image Analysis(2)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="客户端：有限的数据和标签-Client-end-Limited-data-and-labels"><a href="#客户端：有限的数据和标签-Client-end-Limited-data-and-labels" class="headerlink" title="客户端：有限的数据和标签 (Client end: Limited data and labels)"></a>客户端：有限的数据和标签 (Client end: Limited data and labels)</h1><h2 id="问题背景：有限数据和标签"><a href="#问题背景：有限数据和标签" class="headerlink" title="问题背景：有限数据和标签"></a>问题背景：有限数据和标签</h2><p>在医学图像分析的联邦学习（FL）中，许多站点（如医院、诊所等）常常面临数据量不足的挑战，特别是在医学图像中，标注数据的缺乏使得训练有效模型更加困难。由于医学影像标注的成本高昂，客户端可能只有有限的医学图像和标签，这会导致模型在训练时无法充分学习到有用的特征，进而影响全局模型的训练效果。因此，如何处理这些小样本数据的问题，成为联邦学习中的一个重要研究课题。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
+<li><strong>对比学习 (Contrast Learning)</strong></li>
+<li><strong>多任务学习 (Multi-Task Learning)</strong></li>
+<li><strong>弱监督学习 (Weakly-Supervised Learning)</strong></li>
+<li><strong>知识蒸馏 (Knowledge Distillation)</strong></li>
+<li><strong>数据合成 (Data Synthesis)</strong></li>
+</ol>
+<h1 id="联邦学习中的异构环境问题"><a href="#联邦学习中的异构环境问题" class="headerlink" title="联邦学习中的异构环境问题"></a>联邦学习中的异构环境问题</h1><h2 id="问题背景：计算资源与数据差异"><a href="#问题背景：计算资源与数据差异" class="headerlink" title="问题背景：计算资源与数据差异"></a>问题背景：计算资源与数据差异</h2><p>本研究关注的是在不同的医疗影像站点/中心之间，数据量和计算资源（如GPU的可用性）上的差异。尤其是当计算资源差异较大时，强者更强，弱者更弱，导致整个训练过程的收敛速度变慢。</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>一个拥有先进GPU的站点进行50个周期的更新可能只需要1秒钟，而计算资源较弱的站点可能需要100秒。这样，强者客户端需要等待较长时间，直到其他较弱客户端完成训练并进行模型共享，从而降低了联邦训练的整体效率。</p>
+<h3 id="解决方案：半同步训练"><a href="#解决方案：半同步训练" class="headerlink" title="解决方案：半同步训练"></a>解决方案：半同步训练</h3><p>Stripelis等人提出了一种半同步训练策略，专门用于医学影像分析任务。该策略允许不同客户端根据其计算资源和数据量的不同，进行不同的训练周期数。</p>
+<h1 id="服务器端学习中的权重聚合"><a href="#服务器端学习中的权重聚合" class="headerlink" title="服务器端学习中的权重聚合"></a>服务器端学习中的权重聚合</h1><h2 id="问题背景：权重聚合"><a href="#问题背景：权重聚合" class="headerlink" title="问题背景：权重聚合"></a>问题背景：权重聚合</h2><p>在联邦学习系统中，需要有效的策略来聚合客户端的权重，确保每次客户端与服务器通信后，系统性能能够保持一致，避免性能退化。</p>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><h4 id="Progressive-Fourier-聚合策略"><a href="#Progressive-Fourier-聚合策略" class="headerlink" title="Progressive Fourier 聚合策略"></a><strong>Progressive Fourier 聚合策略</strong></h4><p>Chen等人提出了一种在服务器端的Progressive Fourier 聚合策略（基于傅里叶变换）。该策略通过聚合客户端的低频参数部分来共享不同客户端之间学习到的知识，而忽略高频部分。这种方法基于先前的研究，认为深度网络的能力主要由低频部分决定。</p>
+<h4 id="训练损失的影响"><a href="#训练损失的影响" class="headerlink" title="训练损失的影响"></a><strong>训练损失的影响</strong></h4><p>Li等人考虑了每个客户端的训练损失，作为权重聚合的影响因素。例如，在COVID-19检测中，数据不均衡的客户端可能会表现较差。对于这些表现较差的客户端，其权重会被调整为较小值，从而影响全局权重的聚合。</p>
+<h1 id="服务器端学习中的客户端领域漂移问题"><a href="#服务器端学习中的客户端领域漂移问题" class="headerlink" title="服务器端学习中的客户端领域漂移问题"></a>服务器端学习中的客户端领域漂移问题</h1><h2 id="问题背景：领域漂移"><a href="#问题背景：领域漂移" class="headerlink" title="问题背景：领域漂移"></a>问题背景：领域漂移</h2><p>客户端之间的领域漂移，即不同医疗中心（客户端）之间的图像异质性，可能会导致全局模型偏差。具体来说，一个全局模型可能在某些客户端表现良好，但在其他客户端表现较差。</p>
+<h3 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h3><h4 id="Hosseini等人的方法"><a href="#Hosseini等人的方法" class="headerlink" title="Hosseini等人的方法"></a><strong>Hosseini等人的方法</strong></h4><p>Hosseini等人提出了修正的优化目标（受到无线网络中公平资源分配方法的启发），以促进统一的模型表现。当全局模型在某些客户端上表现较差时，会将其贡献添加到总损失函数中。</p>
+<h4 id="Fan等人的方法"><a href="#Fan等人的方法" class="headerlink" title="Fan等人的方法"></a><strong>Fan等人的方法</strong></h4><p>Fan等人利用引导梯度来优化全局模型。他们在聚合各客户端的本地权重时，只使用聚合后权重的正值来更新全局模型。</p>
+<h4 id="Luo等人的方法"><a href="#Luo等人的方法" class="headerlink" title="Luo等人的方法"></a><strong>Luo等人的方法</strong></h4><p>Luo等人提出了一种名为<strong>共享标签分布的联邦学习（FedSLD）</strong>方法，特别适用于医学图像分类任务。该方法通过缓解客户端之间标签分布的差异，来解决领域漂移问题。</p>
+<h1 id="服务器端学习中的客户端异常检测"><a href="#服务器端学习中的客户端异常检测" class="headerlink" title="服务器端学习中的客户端异常检测"></a>服务器端学习中的客户端异常检测</h1><h2 id="问题概述：客户端异常检测"><a href="#问题概述：客户端异常检测" class="headerlink" title="问题概述：客户端异常检测"></a>问题概述：客户端异常检测</h2><p>本研究探索如何保护联邦学习系统免受来自客户端的影响，尤其是由图像标签噪声或恶意攻击造成的腐败。</p>
+<h3 id="解决方案：异常检测"><a href="#解决方案：异常检测" class="headerlink" title="解决方案：异常检测"></a>解决方案：异常检测</h3><p>Alkhunaizi等人提出了一种针对医学图像的服务器端异常检测方法，称为基于距离的异常值抑制（DOS）。该方法能够有效防止客户端故障。每个客户端的权重是根据客户端的异常得分计算的，异常得分是通过Copula-based outlier detection方法进行计算的。</p>
+<h1 id="客户端-服务器通信中的数据泄露与攻击"><a href="#客户端-服务器通信中的数据泄露与攻击" class="headerlink" title="客户端-服务器通信中的数据泄露与攻击"></a>客户端-服务器通信中的数据泄露与攻击</h1><h2 id="问题背景：数据泄露与隐私侵犯"><a href="#问题背景：数据泄露与隐私侵犯" class="headerlink" title="问题背景：数据泄露与隐私侵犯"></a>问题背景：数据泄露与隐私侵犯</h2><p>开发有效的方法，防止在联邦学习的客户端与服务器交互过程中，医疗图像数据泄露和隐私侵犯。</p>
+<h3 id="解决方案：-2"><a href="#解决方案：-2" class="headerlink" title="解决方案："></a>解决方案：</h3><h4 id="部分权重共享"><a href="#部分权重共享" class="headerlink" title="部分权重共享"></a><strong>部分权重共享</strong></h4><p>Yang等人提出，分享整个模型（网络）可能无法完全保护隐私，因此他们建议在医学数据集上使用部分模型共享进行联邦学习。</p>
+<h1 id="通信效率优化"><a href="#通信效率优化" class="headerlink" title="通信效率优化"></a>通信效率优化</h1><h2 id="问题背景：通信效率"><a href="#问题背景：通信效率" class="headerlink" title="问题背景：通信效率"></a>问题背景：通信效率</h2><p>制定优化客户端与服务器之间通信的策略，旨在加速联邦学习（FL）中的收敛过程，并确保更有效的模型训练。</p>
+<h3 id="解决方案：动态融合方法"><a href="#解决方案：动态融合方法" class="headerlink" title="解决方案：动态融合方法"></a>解决方案：动态融合方法</h3><p>Zhang等人提出了一种基于动态融合的FL方法，专门用于COVID-19诊断。该框架根据客户端模型的性能动态选择参与的客户端进行权重融合。</p>
+<h1 id="软件平台和工具"><a href="#软件平台和工具" class="headerlink" title="软件平台和工具"></a>软件平台和工具</h1><p>略</p>
+<h2 id="数据集处理"><a href="#数据集处理" class="headerlink" title="数据集处理"></a>数据集处理</h2><p>常见数据集使用方式：</p>
+<ul>
+<li>直接使用不同医疗站点的数据</li>
+<li>将大型数据集拆分成多个子集</li>
+</ul>
+<h1 id="未来研究方向"><a href="#未来研究方向" class="headerlink" title="未来研究方向"></a>未来研究方向</h1><h2 id="重点关注："><a href="#重点关注：" class="headerlink" title="重点关注："></a>重点关注：</h2><ol>
+<li><strong>处理客户端数据漂移（Client Shift）</strong>：开发更高效的联邦学习领域适应方法和个性化联邦学习技术。</li>
+<li><strong>多模态融合用于联邦学习</strong>：如何在联邦学习中利用多模态医学图像数据。</li>
+<li><strong>处理未知客户端的模型泛化</strong>：确保模型对未知客户端或类别的泛化能力。</li>
+<li><strong>弱监督学习</strong>：处理不完整、不准确或不精确的标签数据。</li>
+<li><strong>联邦学习安全性：攻击与防御</strong>：加强联邦学习系统的防御策略。</li>
+<li><strong>区块链与去中心化的联邦学习</strong>：减少对中心服务器的依赖，增强系统可信度。</li>
+<li><strong>医学视频分析中的联邦学习</strong>：将联邦学习应用于医学视频分析。</li>
+<li><strong>大规模医学图像基准数据集</strong>：构建跨站点的大规模医学图像数据集。</li>
+<li><strong>模型可解释性</strong>：提高联邦学习系统模型的可解释性。</li>
+<li><strong>联邦学习的实际应用</strong>：解决联邦学习在现实世界中的兼容性和集成问题。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/" data-id="cm8ihgoww0000e4tq8s41729w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Review-of-Federated-Learning-for-Medical-Image-Analysis" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2025/03/19/Review-of-Federated-Learning-for-Medical-Image-Analysis/" class="article-date">
@@ -86,7 +164,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Review-of-Federated-Learning-for-Medical-Image-Analysis"><a href="#Review-of-Federated-Learning-for-Medical-Image-Analysis" class="headerlink" title="Review of Federated Learning for Medical Image Analysis"></a>Review of Federated Learning for Medical Image Analysis</h1><h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><h3 id="1-Single-Site-or-Center-→-Limited-Sample-Size"><a href="#1-Single-Site-or-Center-→-Limited-Sample-Size" class="headerlink" title="1. Single Site or Center → Limited Sample Size"></a>1. <strong>Single Site or Center → Limited Sample Size</strong></h3><ul>
+        <h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><h3 id="1-Single-Site-or-Center-→-Limited-Sample-Size"><a href="#1-Single-Site-or-Center-→-Limited-Sample-Size" class="headerlink" title="1. Single Site or Center → Limited Sample Size"></a>1. <strong>Single Site or Center → Limited Sample Size</strong></h3><ul>
 <li>Small sample size is a significant problem in medical image analysis. Data from a single site is often insufficient for training robust models.</li>
 </ul>
 <h3 id="2-Bias-in-Data-Distribution"><a href="#2-Bias-in-Data-Distribution" class="headerlink" title="2. Bias in Data Distribution"></a>2. <strong>Bias in Data Distribution</strong></h3><ul>
@@ -229,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/19/Review-of-Federated-Learning-for-Medical-Image-Analysis/" data-id="cm8ga4vf4000jtctq75jb3ab0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/03/19/Review-of-Federated-Learning-for-Medical-Image-Analysis/" data-id="cm8ga6hxc000igktq5xotgkuu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Research/" rel="tag">Research</a></li></ul>
@@ -296,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/13/SPSS-and-questionnaire-analysis/" data-id="cm8ga4vf5000ltctqdd3b4h8a" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/13/SPSS-and-questionnaire-analysis/" data-id="cm8ga6hxb000ggktqd33pf57a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a></li></ul>
@@ -370,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/12/Statistical-Analysis-and-SPSS-Application/" data-id="cm8ga4vf6000ntctqezq34kyv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/12/Statistical-Analysis-and-SPSS-Application/" data-id="cm8ga6hxd000lgktq6bmc6piy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a></li></ul>
@@ -448,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/15/css-6/" data-id="cm8ga4vff0018tctq9usz120o" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/15/css-6/" data-id="cm8ga6hxm0014gktqdux7gc68" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTMLCSS/" rel="tag">HTMLCSS</a></li></ul>
@@ -568,7 +646,7 @@ sticky 开启元素的粘滞定位
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/06/css-5/" data-id="cm8ga4vf9000vtctq6a4h5hd5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/06/css-5/" data-id="cm8ga6hxl0012gktq3hbnhhfn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTMLCSS/" rel="tag">HTMLCSS</a></li></ul>
@@ -648,7 +726,7 @@ right 元素向右浮动
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/05/css-4/" data-id="cm8ga4vf8000ttctqhuip0qnx" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/05/css-4/" data-id="cm8ga6hxl0010gktq1tkg503t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTMLCSS/" rel="tag">HTMLCSS</a></li></ul>
@@ -829,7 +907,7 @@ right 元素向右浮动
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/04/css-3/" data-id="cm8ga4vf8000stctqezkyal89" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/04/css-3/" data-id="cm8ga6hxk000zgktqaggnfc9w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTMLCSS/" rel="tag">HTMLCSS</a></li></ul>
@@ -954,7 +1032,7 @@ right 元素向右浮动
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/03/css-2/" data-id="cm8ga4vf7000ptctq7trw55z9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/03/css-2/" data-id="cm8ga6hxe000pgktq4s83emkv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTMLCSS/" rel="tag">HTMLCSS</a></li></ul>
@@ -1061,50 +1139,10 @@ right 元素向右浮动
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/02/css-1/" data-id="cm8ga4vf7000otctqembgfevu" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/02/css-1/" data-id="cm8ga6hxe000ngktq7zbfcy5p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTMLCSS/" rel="tag">HTMLCSS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Dom-Scripting-8" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/08/04/Dom-Scripting-8/" class="article-date">
-  <time datetime="2021-08-04T14:38:52.000Z" itemprop="datePublished">2021-08-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/04/Dom-Scripting-8/">Dom-Scripting(8)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a><strong>CSS-DOM</strong></h1><p>用CSS声明样式主要有四种情况。第一种为元素标签，第二种为class属性，第三种为id属性，第四种为元素的位置。</p>
-<p>如果文档需要定期刷新，添加class或id属性使效率降低，因此用DOM方式改变样式。</p>
-<h2 id="为跟在h1后面的元素添加样式"><a href="#为跟在h1后面的元素添加样式" class="headerlink" title="为跟在h1后面的元素添加样式"></a>为跟在h1后面的元素添加样式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查找下一个元素节点（注意不是下一个节点）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNextElement</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node.nodetype == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//文档中下一个节点，可以用nextSibling属性查找</span></span><br><span class="line">    <span class="keyword">if</span> (node.nextSibling)&#123;</span><br><span class="line">        <span class="keyword">return</span> getNextElement(node.nextSibling)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">styleHeaderSiblings</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">document</span>.getElementsByTagName) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">var</span> headers = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;h1&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> elem;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;headers.length; i++)&#123;</span><br><span class="line">        elem = getNextElement(headers[i].nextSibling);</span><br><span class="line">        elem.style.fontWeight = <span class="string">&quot;bold&quot;</span>;</span><br><span class="line">        elem.style.fontSize = <span class="string">&quot;1.2em&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/04/Dom-Scripting-8/" data-id="cm8ga4vf4000htctq3v4w07mt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
 
     </footer>
   </div>
@@ -1163,6 +1201,10 @@ right 元素向右浮动
       <ul>
         
           <li>
+            <a href="/2025/03/21/Review-of-Federated-Learning-for-Medical-Image-Analysis-2/">Review of Federated Learning for Medical Image Analysis(2)</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/19/Review-of-Federated-Learning-for-Medical-Image-Analysis/">Review of Federated Learning for Medical Image Analysis</a>
           </li>
         
@@ -1176,10 +1218,6 @@ right 元素向右浮动
         
           <li>
             <a href="/2021/12/15/css-6/">HTML基础-6</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/06/css-5/">HTML基础-5</a>
           </li>
         
       </ul>
